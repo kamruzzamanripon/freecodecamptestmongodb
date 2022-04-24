@@ -13,7 +13,57 @@ const mongoose = require('mongoose')
 mongoose.mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-let Person;
+
+/** 2) Create a 'Person' Model */
+
+// First of all we need a **Schema**. Each schema maps to a MongoDB collection
+// and defines the shape of the documents within that collection. Schemas are
+// building block for Models. They can be nested to create complex models,
+// but in this case we'll keep things simple. A model allows you to create
+// instances of your objects, called **documents**.
+
+// Create a person having this prototype :
+
+// - Person Prototype -
+// --------------------
+// name : string [required]
+// age :  number
+// favoriteFoods : array of strings (*)
+
+// Use the mongoose basic *schema types*. If you want you can also add more
+// fields, use simple validators like `required` or `unique`, and set
+// `default` values. See the [mongoose docs](http://mongoosejs.com/docs/guide.html).
+
+// <Your code here >
+const Schema = mongoose.Schema
+const personSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: Number,
+  favoriteFoods: [String]
+})
+let Person = mongoose.model('Person', personSchema)
+
+// **Note**: GoMix is a real server, and in real servers interactions with
+// the db are placed in handler functions, to be called when some event happens
+// (e.g. someone hits an endpoint on your API). We'll follow the same approach
+// in these exercises. The `done()` function is a callback that tells us that
+// we can proceed after completing an asynchronous operation such as inserting,
+// searching, updating or deleting. It's following the Node convention and
+// should be called as `done(null, data)` on success, or `done(err)` on error.
+// **Warning** - When interacting with remote services, **errors may occur** !
+
+// - Example -
+// var someFunc = function(done) {
+//   ... do something (risky) ...
+//   if(error) return done(error);
+//   done(null, result);
+// };
+
+
+//let Person;
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
