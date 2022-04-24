@@ -1,0 +1,5 @@
+mongodb atlus
+user- freecodecamptest
+pass - freecodecamptest
+
+mongodb+srv://freecodecamptest:<password>@freecodecamptest.ihk9b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
